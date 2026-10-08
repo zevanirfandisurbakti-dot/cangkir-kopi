@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700&family=Nunito+Sans:wght@400;600&display=swap");
+
+:root {
+  --teal: #1d4b48;
+  --teal-dark: #143634;
+  --enamel: #f4f7f5;
+  --kopi-atas: #5a3420;
+  --kopi-bawah: #3a2014;
+  --mustard: #e0a526;
+  --ink: #17302e;
+  --muted: #5b6f6c;
+  --ok: #2e8b6a;
+  --line: #c9d5d1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  color: var(--ink);
+}
+
+.page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  background: var(--teal);
+}
+
+.scene {
+  width: 100%;
+  max-width: 940px;
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .scene {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+/* ================= CANGKIR ================= */
+.cup-wrap {
+  font-size: 16px;
+  /* semua ukuran cangkir memakai em */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 520px) {
+  .cup-wrap {
+    font-size: 12px;
+  }
+}
+
+.steam-box {
+  position: relative;
+  width: 10em;
+  height: 5em;
+}
+
+.steam {
+  position: absolute;
+  bottom: 0;
+  width: 0.7em;
+  height: 3.4em;
+  border-radius: 1em;
+  background: rgba(255, 255, 255, 0.55);
+  filter: blur(3px);
+  opacity: 0;
+}
+
+.s1 {
+  left: 2.2em;
+}
+
+.s2 {
+  left: 4.6em;
+  animation-delay: 0.5s !important;
+}
+
+.s3 {
+  left: 7em;
+  animation-delay: 1s !important;
+}
+
+.penuh .steam {
+  animation: naik 2.6s ease-out infinite;
+}
+
+@keyframes naik {
+  0% {
+    transform: translateY(1em) scaleX(1);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(-1.8em) scaleX(1.6);
+    opacity: 0;
+  }
+}
+
+.cup {
+  position: relative;
+  width: 15em;
+  height: 13em;
+}
+
+.cup-body {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--enamel);
+  border-radius: 0.6em 0.6em 7em 7em;
+  box-shadow: inset -1.2em 0 0 rgba(0, 0, 0, 0.07);
+}
+
+.handle {
+  position: absolute;
+  right: -3.4em;
+  top: 2em;
+  width: 4.4em;
+  height: 6em;
+  border: 1em solid var(--enamel);
+  border-left: 0;
+  border-radius: 0 3.5em 3.5em 0;
+}
+
+.coffee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--fill) * 0.88%);
+  background: linear-gradient(180deg, var(--kopi-atas), var(--kopi-bawah));
+  transition: height 0.9s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.coffee::before {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  top: -0.5em;
+  height: 1em;
+  border-radius: 50%;
+  background: var(--kopi-atas);
+}
+
+.coffee.kosong::before {
+  opacity: 0;
+}
+
+.saucer {
+  width: 21em;
+  height: 1.6em;
+  margin-top: -0.5em;
+  border-radius: 50%;
+  background: #dfe8e4;
+  box-shadow: 0 0.7em 0 -0.2em var(--teal-dark);
+}
+
+.progress {
+  margin: 1.8em 0 0;
+  color: #cfe0dc;
+  font-size: 1.05em;
+}
+
+/* ================= FORM ================= */
+.card {
+  width: min(100%, 440px);
+  margin: 0 auto;
+  padding: 36px 32px;
+  border-radius: 20px;
+  background: #f6f8f6;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-family: "Gabarito", sans-serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  line-height: 1.15;
+}
+
+.hint {
+  margin: 0 0 8px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+label {
+  display: block;
+  margin: 16px 0 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+}
+
+input.ok,
+select.ok {
+  border-color: var(--ok);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(29, 75, 72, 0.2);
+}
+
+.btn {
+  width: 100%;
+  margin-top: 26px;
+  padding: 13px 16px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--mustard);
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: #c98f17;
+}
+
+.btn:disabled {
+  background: #dde3e0;
+  color: #7c8a87;
+  cursor: not-allowed;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.btn-pelan {
+  background: transparent;
+  border: 1.5px solid var(--line);
+}
+
+.btn-pelan:hover {
+  background: #e9eeec !important;
+}
+
+.selesai p {
+  margin: 8px 0 0;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
